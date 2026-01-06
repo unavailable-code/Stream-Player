@@ -6,18 +6,18 @@ interface UrlCardProps {
 }
 const UrlCard = ({ value }: UrlCardProps) => {
   return (
-    <div className="rounded-xl bg-gray-800 p-6">
+    <div className="rounded-xl bg-card p-6 text-muted">
       <div className="flex items-center gap-x-10">
-        <p className="font-semibold shrink-0">Server Url</p>
+        <p className="font-semibold shrink-0 text-theme" >Server Url</p>
         <div className="space-y-2 w-full">
           <div className="w-full flex items-center gap-x-2">
             <Input
               value={value || ""}
               disabled
               placeholder="Server Url"
-              className="bg-black border-0"
+              className="bg-theme border-0"
             />
-            <CopyButton value={value || ""} />
+            <CopyButton  value={value || ""} />
           </div>
         </div>
       </div>

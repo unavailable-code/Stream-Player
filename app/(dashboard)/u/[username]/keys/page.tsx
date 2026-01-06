@@ -11,9 +11,9 @@ const KeysPage = async () => {
     throw new Error("Stream not found");
   }
   return (
-    <div className="p-10 min-h-screen w-full bg-black overflow-hidden text-white ">
+    <div className="p-10 min-h-screen w-full bg-theme overflow-hidden text-theme ">
       <div className="flex items-center justify-between mb-4">
-        <h1 className="text-3xl font-bold">Keys & URLs</h1>
+        <h1 className="text-3xl font-bold text-theme">Keys & URLs</h1>
         <ConnectModal />
       </div>
       <div className="space-y-4">

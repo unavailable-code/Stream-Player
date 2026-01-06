@@ -86,3 +86,126 @@
     color: white;
   }
 }
+
+
+@media (max-width: 768px) {
+  html,
+  body {
+    height: auto !important;
+    overflow-y: auto !important;
+    overflow-x: hidden;
+  }
+
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+
+/* ===============================
+   BASE (fallback)
+================================ */
+:root {
+  --bg: #0b0b0e;
+  --card: #15151a;
+  --button: #1f2937;
+  --primary: #3b82f6;
+  --destructive: #ef4444;
+  --text: #ffffff;
+  --muted: #9ca3af;
+  --border: rgba(255, 255, 255, 0.08);
+}
+
+
+[data-theme="dark"] {
+  --bg: #0b0b0e;
+  --card: #15151a;
+  --button: #1f2937;
+  --primary: #3b82f6;
+  --destructive: #ef4444;
+  --text: #ffffff;
+  --muted: #9ca3af;
+  --border: rgba(255, 255, 255, 0.08);
+}
+
+
+[data-theme="crimson"] {
+  --bg: #120606;
+  --card: #1d0b0b;
+  --button: #2a0f0f;
+  --primary: #ef4444;
+  --destructive: #dc2626;
+  --text: #ffffff;
+  --muted: #fca5a5;
+  --border: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="emerald"] {
+  --bg: #06140e;
+  --card: #0b1f16;
+  --button: #0f2e21;
+  --primary: #10b981;
+  --destructive: #ef4444;
+  --text: #ecfdf5;
+  --muted: #6ee7b7;
+  --border: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="sakura"] {
+  --bg: #fff1f5;
+  --card: #ffe4ec;
+  --button: #ffd1e3;
+  --primary: #ec4899;
+  --destructive: #ef4444;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --border: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="gold"] {
+
+  --bg: #0e0a06;         
+  --card: #1a120b;       
+  --button: #24170e;      
+  --primary: #f59e0b;    
+  --destructive: #ef4444;
+  --text: #fff7ed;       
+  --muted: #fdba74;      
+  --border: rgba(245, 158, 11, 0.2);
+}
+
+.bg-theme {
+  background-color: var(--bg);
+}
+
+.bg-card {
+  background-color: var(--card);
+}
+
+.bg-button {
+  background-color: var(--button);
+}
+
+.bg-primary {
+  background-color: var(--primary);
+}
+
+.bg-destructive {
+  background-color: var(--destructive);
+}
+
+.text-theme {
+  color: var(--text);
+}
+
+.text-muted {
+  color: var(--muted);
+}
+
+.border-theme {
+  border-color: var(--border);
+}
+
+* {
+  transition: background-color 1s ease, color 1s ease;
+}

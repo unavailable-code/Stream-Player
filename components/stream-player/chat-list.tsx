@@ -12,7 +12,7 @@ export const ChatList = ({ isHidden, messages }: ChatListProps) => {
   if (isHidden || !messages || messages.length === 0) {
     return (
       <div className="flex flex-1 items-center justify-center ">
-        <p className="text-sm text-muted-foreground">
+        <p className="text-sm text-muted">
           {isHidden ? "Chat is Disabled" : "Welcome to chat"}
         </p>
       </div>

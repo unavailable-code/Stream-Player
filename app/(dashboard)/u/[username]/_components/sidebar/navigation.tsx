@@ -18,18 +18,9 @@ export const Navigation = () => {
     { label: "Community", href: `/u/${user?.username}/community`, icon: Users },
   ];
 
-  if (!user?.username) {
-    return (
-      <ul className="space-y-2">
-        {[...Array(4)].map((_, i) => (
-          <NavItemSkeleton key={i} />
-        ))}
-      </ul>
-    );
-  }
 
   return (
-    <ul className="space-y-2 px-2 pt-4 lg:pt-0 text-white">
+    <ul className="space-y-2 px-2 pt-4 lg:pt-0  text-theme">
       {routes.map((route) => (
         <NavItem
           key={route.href}

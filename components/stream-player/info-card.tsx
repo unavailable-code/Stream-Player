@@ -24,43 +24,66 @@ export const InfoCard = ({
 
   if (!isHost) return null;
   return (
-    <div className="px-4">
-      <div className="rounded-xl bg-gray-800">
-        <div className="flex items-center gap-x-2.5 p-4">
-          <div className="rounded-md bg-blue-600 p-2 h-auto w-auto">
-            <Pencil className="h-6 w-6" />
-          </div>
-          <div>
-            <h2 className="text-sm lg:text-lg font-semibold capitalize">
-              Edit your stream info
-            </h2>
-            <p className="text-muted-foreground text-xs lg:text-sm">
-              Maximize your visibility
-            </p>
-          </div>
-          <InfoModal initialName={name} initialThumbnail={thumbnailUrl} />
+<div className="px-4">
+  <div className="rounded-2xl bg-card border border-white/10 shadow-sm">
+    {/* HEADER */}
+    <div className="flex items-start justify-between p-4 lg:p-6">
+      <div className="flex items-center gap-3">
+        <div className="rounded-lg bg-blue-600/20 p-2 text-blue-400">
+          <Pencil className="h-5 w-5" />
         </div>
-        <Separator />
-        <div className="p-4 lg:p-6 space-y-4">
-          <div>
-            <h3 className="text-sm text-muted-foreground mb-2">Name</h3>
-            <p className="text-sm font-semibold">{name}</p>
-          </div>
-          <div>
-            <h3 className="text-sm text-muted-foreground mb-2">Thumbnail</h3>
-            {thumbnailUrl && (
-              <div className="relative aspect-video rounded-md overflow-hidden w-[200px] border border-white/10">
-                <Image
-                  fill
-                  src={thumbnailUrl}
-                  alt={name}
-                  className="object-cover"
-                />
-              </div>
-            )}
-          </div>
+
+        <div>
+          <h2 className="text-theme lg:text-lg font-semibold">
+            Edit your stream info
+          </h2>
+          <p className="text-xs lg:text-sm text-muted-foreground">
+            Maximize your visibility
+          </p>
         </div>
       </div>
+
+      {/* ACTION */}
+      <InfoModal
+        initialName={name}
+        initialThumbnail={thumbnailUrl}
+      />
     </div>
+
+    <Separator className="bg-white" />
+
+    {/* CONTENT */}
+    <div className="p-4 lg:p-6 space-y-6">
+      {/* NAME */}
+      <div className="space-y-1">
+        <h3 className="text-xs uppercase tracking-wide text-muted-foreground">
+          Stream Name
+        </h3>
+        <p className="text-sm lg:text-base font-medium">
+          {name}
+        </p>
+      </div>
+
+      {/* THUMBNAIL */}
+      {thumbnailUrl && (
+        <div className="space-y-2">
+          <h3 className="text-xs uppercase tracking-wide text-muted-foreground">
+            Thumbnail
+          </h3>
+
+          <div className="relative aspect-video w-full max-w-sm overflow-hidden rounded-lg border border-white/10 bg-black">
+            <Image
+              fill
+              src={thumbnailUrl}
+              alt={name}
+              className="object-cover"
+            />
+          </div>
+        </div>
+      )}
+    </div>
+  </div>
+</div>
+
   );
 };

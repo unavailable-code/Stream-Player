@@ -58,9 +58,9 @@ export const Actions = ({ hostIdentity, isHost, isFollowing }: ActionProps) => {
     <Button
       disabled={isPending || isHost}
       onClick={toggleFollow}
-      variant="primary"
+     
       size="sm"
-      className="w-full lg:w-auto"
+      className="w-full lg:w-auto bg-primary text-theme hover:bg-primary "
     >
       <Heart
         className={cn("h-4 w-4 mr-2", isFollowing ? "fill-white" : "fill-none")}

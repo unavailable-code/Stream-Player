@@ -25,9 +25,9 @@ export const NavItem = ({
     <Button
       asChild
       className={cn(
-        "w-full h-12",
+        "w-full h-12 bg-card",
         collapsed ? "justify-center" : "justify-start",
-        isActive && "bg-black"
+        isActive && "bg-primary"
       )}
     >
       <Link href={href}>

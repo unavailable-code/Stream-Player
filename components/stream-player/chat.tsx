@@ -66,7 +66,7 @@ export const Chat = ({
   return (
     <div
       className={cn(
-        "flex flex-col bg-gray-900 border-l border-b pt-0 h-[calc(100vh-80px)]",
+        "flex flex-col bg-theme pt-0 h-[calc(100vh-80px)]",
         "scroll-smooth",
         "subtle-scrollbar"
       )}

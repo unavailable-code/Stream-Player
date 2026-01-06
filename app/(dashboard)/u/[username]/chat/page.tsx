@@ -10,7 +10,7 @@ const ChatPage = async () => {
     throw new Error("Not found");
   }
   return (
-    <div className="p-6 h-screen w-full bg-black text-white">
+    <div className="p-6 h-screen w-full bg-theme text-theme">
       <div className="mb-4">
         <h1 className="text-2xl font-bold">Chat Settings</h1>
       </div>

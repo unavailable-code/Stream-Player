@@ -25,7 +25,7 @@ const CopyButton = ({ value }: CopyButtonProps) => {
       onClick={onCopy}
       disabled={!value || isCopied}
       size="sm"
-      className="bg-transparent"
+      className="bg-transparent text-theme"
     >
       <Icon className="h-4 w-4" />
     </Button>

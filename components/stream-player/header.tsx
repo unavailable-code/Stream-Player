@@ -36,7 +36,7 @@ export const Header = ({
   const isLive = !!participant;
   const participantCount = participats.length - 1;
   return (
-    <div className="flex flex-col lg:flex-row gap-y-4 lg:gap-y-0 items-start justify-between px-4">
+    <div className="flex flex-col lg:flex-row gap-y-4 lg:gap-y-0 items-start text-theme justify-between px-4">
       <div className="flex items-center gap-x-3">
         <UserAvatar imageUrl={imageUrl} username={hostName} size="lg" isLive />
         <div className="space-y-1">
@@ -54,7 +54,7 @@ export const Header = ({
               </p>
             </div>
           ) : (
-            <p className="font-semibold text-xs text-muted-foreground">
+            <p className="font-semibold text-xs text-muted">
               Offline
             </p>
           )}

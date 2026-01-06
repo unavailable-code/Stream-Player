@@ -7,7 +7,7 @@ import { Suspense } from "react";
 async function Home() {
   handleUser();
   return (
-    <div className="h-full p-8 max-w-screen-2xl mx-auto">
+    <div className="h-full p-8 max-w-screen-3xl mx-auto bg-theme">
       <Suspense fallback={<ResultSkeleton />}>
         <Result />
       </Suspense>

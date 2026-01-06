@@ -64,11 +64,11 @@ export const InfoModal = ({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="link" size="sm" className="ml-auto text-white">
+        <Button variant="link" size="sm" className="ml-auto text-theme">
           Edit
         </Button>
       </DialogTrigger>
-      <DialogContent className="bg-gray-900 border-0">
+      <DialogContent className="bg-card border-0">
         <DialogHeader>
           <DialogTitle>Edit stream info</DialogTitle>
         </DialogHeader>
@@ -76,7 +76,7 @@ export const InfoModal = ({
           <div className="space-y-2">
             <Label>Name</Label>
             <Input
-              className="bg-gray-900 border-white/10"
+              className="bg-theme border-white/10"
               placeholder="Stream name"
               onChange={onChange}
               value={name}
@@ -130,9 +130,9 @@ export const InfoModal = ({
 
           <div className="flex justify-between">
             <DialogClose asChild ref={closeRef}>
-              <Button type="button">Cancel</Button>
+              <Button type="button" className="bg-button text-muted">Cancel</Button>
             </DialogClose>
-            <Button type="submit" variant="primary" disabled={isPending}>
+            <Button type="submit" className="bg-primary" disabled={isPending}>
               Save
             </Button>
           </div>

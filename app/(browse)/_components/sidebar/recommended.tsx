@@ -16,7 +16,7 @@ export const Recommended = ({ data }: RecommendedProps) => {
     <div>
       {showLabel && (
         <div className="pt-6 mb-4">
-          <p className="text-sm text-muted-foreground text-center">
+          <p className="text-sm text-muted text-center">
             Recommended
           </p>
         </div>

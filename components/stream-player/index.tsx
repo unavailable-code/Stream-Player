@@ -47,9 +47,7 @@ export const StreamPlayer = ({
   const { collapsed } = useChatSidebar();
   const { isBrowserLive } = useBroadcaster();
 
-  if (!token || !name || !identity) {
-    return <StreamPlayerSkeleton />;
-  }
+
   const normalizeIdentity = (id: string) =>
     id.startsWith("obs-") ? id.replace("obs-", "") : id;
 
@@ -60,64 +58,74 @@ export const StreamPlayer = ({
   console.log("Is Host :", isHost);
 
   const Layout = (
-    <div
-      className={cn(
-        "h-dvh overflow-hidden grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-6",
-        collapsed && "lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2"
-      )}
-    >
-      <div
-        className={cn(
-          "space-y-4 col-span-1 lg:col-span-2 xl:col-span-2 2xl:col-span-4 pb-10",
-          " overflow-y-auto hidden-scrollbar"
-        )}
-      >
-        <Video
-          hostName={user.username}
-          hostIdentity={user.id}
-          showBrowserControls={isBrowserLive && isHost}
-        />
+<div
+  className={cn(
+    // MOBILE
+    "min-h-screen flex flex-col overflow-y-auto",
 
-        <Header
-          hostName={user.username}
-          hostIdentity={user.id}
-          viewerIdentity={identity}
-          isHost={isHost}
-          imageUrl={user.imgUrl}
-          isFollowing={isFollowing}
-          name={stream.name}
-        />
+    // DESKTOP
+    "md:h-dvh md:flex-row md:overflow-hidden"
+  )}
+>
+  {/* MAIN CONTENT */}
+<div
+  className="
+    flex-1
+    space-y-4
+    bg-theme
+    md:pb-16
+    md:h-full
+    md:overflow-y-auto hidden-scrollbar
+  "
+>
+    <Video
+      hostName={user.username}
+      hostIdentity={user.id}
+      showBrowserControls={isBrowserLive && isHost}
+    />
+    <Header
+      hostName={user.username}
+      hostIdentity={user.id}
+      viewerIdentity={identity}
+      isHost={isHost}
+      imageUrl={user.imgUrl}
+      isFollowing={isFollowing}
+      name={stream.name}
+    />
+    <InfoCard
+      hostIdentity={user.id}
+      viewerIdentity={identity}
+      isHost={isHost}
+      name={stream.name}
+      thumbnailUrl={stream.thumbnailUrl}
+    />
+    <AboutCard
+      hostName={user.username}
+      hostIdentity={user.id}
+      viewerIdentity={identity}
+      isHost={isHost}
+      bio={user.bio}
+      followedByCount={user._count.followedBy}
+    />
+  </div>
 
-        <InfoCard
-          hostIdentity={user.id}
-          viewerIdentity={identity}
-          isHost={isHost}
-          name={stream.name}
-          thumbnailUrl={stream.thumbnailUrl}
-        />
+  {/* CHAT PANEL */}
+  {!collapsed && (
+  <div className="w-full md:w-[380px] md:h-full md:overflow-y-auto border-l">
+    <Chat
+      viewerName={name}
+      hostName={user.username}
+      hostIdentity={user.id}
+      isFollowing={isFollowing}
+      isChatEnabled={stream.isChatEnabled}
+      isChatDelayed={stream.isChatDelayed}
+      isChatFollowersOnly={stream.isChatFollowersOnly}
+    />
+  </div>
+)}
 
-        <AboutCard
-          hostName={user.username}
-          hostIdentity={user.id}
-          viewerIdentity={identity}
-          isHost={isHost}
-          bio={user.bio}
-          followedByCount={user._count.followedBy}
-        />
-      </div>
+</div>
 
-      <div className={cn("2xl:col-span-2 col-span-1", collapsed && "hidden")}>
-        <Chat
-          viewerName={name}
-          hostName={user.username}
-          hostIdentity={user.id}
-          isFollowing={isFollowing}
-          isChatEnabled={stream.isChatEnabled}
-          isChatDelayed={stream.isChatDelayed}
-          isChatFollowersOnly={stream.isChatFollowersOnly}
-        />
-      </div>
-    </div>
   );
 
   return (
@@ -143,16 +151,3 @@ export const StreamPlayer = ({
   );
 };
 
-export const StreamPlayerSkeleton = () => {
-  return (
-    <div className="grid grid-cols-1 lg:gap-y-0 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-6 h-full">
-      <div className="space-y-4 col-span-1 lg:col-span-2 xl:col-span-2 2xl:col-span-4 lg:overflow-y-auto hidden-scrollbar pb-10">
-        <VideoSkeleton />
-        <HeaderSkeleton />
-      </div>
-      <div className="2xl:col-span-2 col-span-1 bg-gray-800">
-        <ChatSkeleton />
-      </div>
-    </div>
-  );
-};

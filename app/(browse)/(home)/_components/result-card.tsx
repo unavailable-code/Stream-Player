@@ -33,10 +33,10 @@ export const ResultCard = ({ data }: ResultCardProps) => {
             showBadge={false}
           />
           <div className="flex flex-col text-sm overflow-hidden">
-            <p className="truncate font-semibold hover:text-blue-500">
+            <p className="truncate text-theme font-semibold hover:text-blue-500">
               {data.name}
             </p>
-            <p className="text-muted-foreground">{data.user.username}</p>
+            <p className="text-muted">{data.user.username}</p>
           </div>
         </div>
       </div>

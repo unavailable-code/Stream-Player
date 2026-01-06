@@ -1,5 +1,6 @@
+import { ThemeDropdown } from "@/components/theme-swticher";
 import { Button } from "@/components/ui/button";
-import { SignIn, SignInButton, UserButton } from "@clerk/nextjs";
+import {  SignInButton, UserButton } from "@clerk/nextjs";
 import { currentUser } from "@clerk/nextjs/server";
 import { Clapperboard } from "lucide-react";
 import Link from "next/link";
@@ -7,18 +8,19 @@ import Link from "next/link";
 const Action = async () => {
   const user = await currentUser();
   return (
-    <div className="flex items-center justify-end gap-x-2 ml-4 lg:ml-0">
+    <div className="flex items-center justify-end gap-x-2 w-36 ml-3 lg:ml-0">
+       <ThemeDropdown/>
       {!user && (
         <div className=" h-10 w-20 flex justify-center hover:opacity-75">
           <SignInButton>
-            <Button variant="primary">Login</Button>
+            <Button className="bg-primary text-primary">Login</Button>
           </SignInButton>
         </div>
       )}
       {!!user && (
         <div className="flex items-center gap-x-4">
           <Button
-            className="text-muted-foreground hover:text-secondary bg-[#2b2d35]"
+            className=" bg-button text-theme"
             size="sm"
             asChild
           >

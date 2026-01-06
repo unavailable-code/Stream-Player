@@ -26,7 +26,7 @@ export const ToggleCard = ({
     });
   };
   return (
-    <div className="rounded-xl bg-gray-700 p-6">
+    <div className="rounded-xl bg-card p-6">
       <div className="flex items-center justify-between">
         <p className="font-semibold shrink-0">{label}</p>
         <div className="space-y-2">

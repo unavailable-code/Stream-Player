@@ -46,9 +46,9 @@ export const ConnectModal = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="primary">Generate Connection</Button>
+        <Button className="bg-primary">Generate Connection</Button>
       </DialogTrigger>
-      <DialogContent className="bg-gray-900 text-white border-0">
+      <DialogContent className="bg-card text-theme border-0">
         <DialogHeader>
           <DialogTitle>Generate Connection</DialogTitle>
         </DialogHeader>
@@ -57,15 +57,15 @@ export const ConnectModal = () => {
           value={ingressType}
           onValueChange={(value) => setIngressType(value)}
         >
-          <SelectTrigger className="w-full bg-transparent text-white border-[#2a2b31]  focus:ring-0 focus:ring-offset-0 ">
+          <SelectTrigger className="w-full bg-transparent text-theme border-[#2a2b31] focus:ring-0 focus:ring-offset-0 ">
             <SelectValue placeholder="Ingress Type" />
           </SelectTrigger>
-          <SelectContent className="bg-gray-800 shadow-3xl border-[#35384b] text-white">
+          <SelectContent className="bg-theme shadow-3xl border-[#35384b] text-theme">
             <SelectItem value={RTMP}>RTMP</SelectItem>
             <SelectItem value={WHIP}>WHIP</SelectItem>
           </SelectContent>
         </Select>
-        <Alert className="bg-gray-900 text-white shadow-lg border-1-white border border-[#2a2b31] ">
+        <Alert className="bg-theme text-theme shadow-lg border-1-white border border-[#2a2b31] ">
           <AlertTriangle className="h-4 w-4 " />
           <AlertTitle>Warning!</AlertTitle>
           <AlertDescription>
@@ -76,7 +76,7 @@ export const ConnectModal = () => {
         <div className="flex justify-between">
           <DialogClose ref={closeRef}>Cancel</DialogClose>
 
-          <Button variant="primary" onClick={onSubmit} disabled={isPending}>
+          <Button className="bg-primary" onClick={onSubmit} disabled={isPending}>
             Generate
           </Button>
         </div>

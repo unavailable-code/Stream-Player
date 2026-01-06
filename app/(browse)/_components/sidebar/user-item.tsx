@@ -24,7 +24,7 @@ export const UserItem = ({ username, imageUrl, isLive }: UserItemProps) => {
       className={cn(
         "w-full h-12 z-0 bg-transparent",
         collapsed ? "justify-center" : "justify-start",
-        isActive && "bg-black"
+        isActive && "bg-theme text-theme"
       )}
     >
       <Link href={href}>
@@ -42,7 +42,7 @@ export const UserItem = ({ username, imageUrl, isLive }: UserItemProps) => {
           />
           {!collapsed && (
             <div>
-              <p className="truncate">{username}</p>
+              <p className="truncate text-theme">{username}</p>
             </div>
           )}
           {!collapsed && isLive && <LiveBadge className="ml-auto" />}

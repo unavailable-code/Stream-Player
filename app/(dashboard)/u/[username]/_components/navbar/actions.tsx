@@ -1,3 +1,4 @@
+import { ThemeDropdown } from "@/components/theme-swticher";
 import { Button } from "@/components/ui/button";
 import { UserButton } from "@clerk/nextjs";
 import { LogOut } from "lucide-react";
@@ -5,7 +6,9 @@ import Link from "next/link";
 
 const Action = () => {
   return (
-    <div className="flex items-center justify-end gap-x-2">
+    <div className="flex items-center justify-end w-10 gap-x-2">
+      <ThemeDropdown/>
+
       <Button
         size="sm"
         className="text-muted-foreground bg-transparent hover:text-white hover:bg-transparent "

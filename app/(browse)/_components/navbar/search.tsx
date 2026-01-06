@@ -28,7 +28,7 @@ const Search = () => {
       onSubmit={onsubmit}
     >
       <Input
-        className="bg-[#16181f] text-white rounded-r-none focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 border-0 h-9"
+        className="bg-button text-theme rounded-r-none focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 border-0 h-9"
         placeholder="Search"
         value={value}
         onChange={(e) => setValue(e.target.value)}
@@ -36,13 +36,13 @@ const Search = () => {
       {value && (
         <X
           onClick={onclear}
-          className="absolute right-14 text-muted-foreground h-5 w-5 hover:opacity-75 transition cursor-pointer top-2.5"
+          className="absolute right-14 text-muted h-5 w-5 hover:opacity-75 transition cursor-pointer top-2.5"
         />
       )}
       <Button
         type="submit"
         size="sm"
-        className=" bg-[#2b2d35] text-muted-foreground rounded-l-none"
+        className="bg-theme text-theme rounded-l-none"
       >
         <SearchIcon />
       </Button>

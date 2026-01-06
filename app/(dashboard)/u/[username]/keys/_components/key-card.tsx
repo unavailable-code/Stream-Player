@@ -12,7 +12,7 @@ interface KeyCardProps {
 const KeyCard = ({ value }: KeyCardProps) => {
   const [show, setShow] = useState(false);
   return (
-    <div className="rounded-xl bg-gray-800 p-6 text-white">
+    <div className="rounded-xl bg-card p-6 text-theme">
       <div className="flex items-start gap-x-10">
         <p className="font-semibold shrink-0">StreamKey</p>
         <div className="space-y-2 w-full">
@@ -22,14 +22,14 @@ const KeyCard = ({ value }: KeyCardProps) => {
               type={show ? "text" : "password"}
               disabled
               placeholder="Stream Key"
-              className="bg-black border-0"
+              className="bg-theme border-0"
             />
             <CopyButton value={value || ""} />
           </div>
           <Button
             size="sm"
             variant="link"
-            className="text-white"
+            className="text-theme"
             onClick={() => setShow(!show)}
           >
             {show ? "Hide" : "Show"}

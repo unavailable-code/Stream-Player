@@ -15,7 +15,7 @@ export const Toggle=()=>{
                 <div className="hidden lg:flex items-center justify-center pt-4 mb-4">
                     <Hint label={label} asChild side="right">
 
-                    <Button className="h-auto p-2 text-white bg-[#3d4153] hover:text-muted-foreground" onClick={onExpand}>
+                    <Button className="h-auto p-2 text-white bg-primary hover:text-muted" onClick={onExpand}>
                         <ArrowRightFromLine className="h-10 w-4"/>
                     </Button>
                     </Hint>
@@ -24,9 +24,9 @@ export const Toggle=()=>{
 
             {!collapsed &&(
                 <div className="flex items-center w-full p-3 pl-6 mb-2 ">
-                    <p className="font-semibold text-white">For u</p>   
+                    <p className="font-semibold text-theme">For u</p>   
                     <Hint label={label} side="right" asChild align="center">
-                    <Button onClick={onCollapse} className="ml-auto h-8 p-2 text-white bg-[#3d4153] hover:text-muted-foreground" >
+                    <Button onClick={onCollapse} className="ml-auto h-8 p-2 text-white bg-primary hover:text-muted-foreground" >
                         <ArrowLeftFromLine className="h-8 w-4"/>
                     </Button>
                     </Hint>

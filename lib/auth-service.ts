@@ -1,7 +1,9 @@
 import { currentUser } from "@clerk/nextjs/server";
 import { db } from "./db";
+
 export const getSelf=async()=>{
     const self=await currentUser()
+    console.log(self)
     if(!self || !self.username){
         throw new Error("Unauthorized")
     }
@@ -44,7 +46,7 @@ export const handleUser=async()=>{
   if (!user) {
     return null;
   }
-  console.log(user?.id);
+  console.log("dskadak",user?.id);
   const res = await db.user.findUnique({
     where: {
       externalUserId: user?.id,

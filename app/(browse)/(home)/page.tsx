@@ -3,7 +3,7 @@ import { db } from "@/lib/db";
 import { handleUser } from "@/lib/auth-service";
 import { Result, ResultSkeleton } from "./_components/result";
 import { Suspense } from "react";
-
+export const dynamic = "force-dynamic";
 async function Home() {
   handleUser();
   return (

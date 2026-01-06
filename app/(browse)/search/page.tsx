@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { Results, ResultsSkeleton } from "./_components/result";
 import { Suspense } from "react";
-
+export const dynamic = "force-dynamic";
 interface SearchPageProps {
   searchParams: {
     term?: string;

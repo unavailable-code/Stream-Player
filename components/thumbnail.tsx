@@ -18,8 +18,7 @@ export const Thumbnail = ({
 }: ThumbnailProps) => {
   return (
     <div className="group relative aspect-video cursor-pointer overflow-hidden rounded-xl bg-muted">
-
-      <div className="absolute inset-0 z-10 bg-black/30 opacity-0 transition-opacity group-hover:opacity-100" />
+      <div className="absolute inset-0 z-1 bg-black/30 opacity-0 transition-opacity group-hover:opacity-100" />
 
       {!src ? (
         <div className="flex h-full w-full items-center justify-center border border-dashed  border-border bg-muted !rounded-none">
@@ -57,4 +56,3 @@ export const ThumbnailSkeleton = () => {
     </div>
   );
 };
-

@@ -10,10 +10,8 @@ const Logo = () => {
         width={50}
       ></Image>
       <div>
-        <p className="hidden md:block text-xl text-theme ">Streamer</p>
-        <p className="hidden md:block text-md text-muted">
-          Creator Dashboard
-        </p>
+        <p className="hidden md:block text-xl text-theme ">Bloom TV</p>
+        <p className="hidden md:block text-md text-muted">Creator Dashboard</p>
       </div>
     </div>
   );

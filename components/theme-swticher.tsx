@@ -9,12 +9,11 @@ const THEMES = [
   { id: "emerald", label: "Emerald " },
   { id: "sakura", label: "Sakura " },
   { id: "gold", label: "gold " },
-
 ];
 
 export function ThemeDropdown() {
   const [open, setOpen] = useState(false);
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState("sakura");
   const ref = useRef<HTMLDivElement>(null);
 
   // Load saved theme
@@ -45,27 +44,23 @@ export function ThemeDropdown() {
 
   return (
     <div ref={ref} className="relative w-44">
-
-   <button
-  onClick={() => setOpen((v) => !v)}
-  className="
+      <button
+        onClick={() => setOpen((v) => !v)}
+        className="
     flex items-center gap-2
     rounded-lg border border-theme
     bg-button p-2
     hover:bg-card
+    z-10
   "
-  aria-label="Change theme"
->
+        aria-label="Change theme"
+      >
+        <PaletteIcon className="h-4 w-4" />
 
-  <PaletteIcon className="h-4 w-4" />
-
-
-  <ChevronDown
-    className={`h-4 w-4 transition-transform ${
-      open ? "rotate-180" : ""
-    }`}
-  />
-</button>
+        <ChevronDown
+          className={`h-4 w-4 transition-transform ${open ? "rotate-180" : ""}`}
+        />
+      </button>
 
       {open && (
         <div

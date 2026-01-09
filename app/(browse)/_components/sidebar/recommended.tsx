@@ -16,9 +16,7 @@ export const Recommended = ({ data }: RecommendedProps) => {
     <div>
       {showLabel && (
         <div className="pt-6 mb-4">
-          <p className="text-sm text-muted text-center">
-            Recommended
-          </p>
+          <p className="text-sm text-muted text-center">Recommended</p>
         </div>
       )}
       <ul className="space-y-2 px-2">
@@ -38,7 +36,7 @@ export const Recommended = ({ data }: RecommendedProps) => {
 
 export const RecommendedSkeleton = () => {
   return (
-    <ul className="">
+    <ul className="h-full">
       {[...Array(3)].map((_, i) => (
         <UserItemSkeleton key={i} />
       ))}

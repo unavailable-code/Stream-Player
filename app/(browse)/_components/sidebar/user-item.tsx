@@ -54,8 +54,8 @@ export const UserItem = ({ username, imageUrl, isLive }: UserItemProps) => {
 
 export const UserItemSkeleton = () => {
   return (
-    <li className="flex items-center gap-x-4 px-3 py-2 bg-[#2D2E35]">
-      <Skeleton className="min-h-[32px] min-w-[32px] rounded-full bg-[#191a1d]" />
+    <li className="flex items-center gap-x-4 px-3 py-2 bg-theme">
+      <Skeleton className="min-h-[32px] min-w-[32px] rounded-full bg-theme" />
       <div className="flex-1">
         <Skeleton className="h-6 " />
       </div>

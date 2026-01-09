@@ -1,5 +1,3 @@
-import { currentUser } from "@clerk/nextjs/server";
-import { db } from "@/lib/db";
 import { handleUser } from "@/lib/auth-service";
 import { Result, ResultSkeleton } from "./_components/result";
 import { Suspense } from "react";

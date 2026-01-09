@@ -47,7 +47,6 @@ export const StreamPlayer = ({
   const { collapsed } = useChatSidebar();
   const { isBrowserLive } = useBroadcaster();
 
-
   const normalizeIdentity = (id: string) =>
     id.startsWith("obs-") ? id.replace("obs-", "") : id;
 
@@ -58,18 +57,18 @@ export const StreamPlayer = ({
   console.log("Is Host :", isHost);
 
   const Layout = (
-<div
-  className={cn(
-    // MOBILE
-    "min-h-screen flex flex-col overflow-y-auto",
+    <div
+      className={cn(
+        // MOBILE
+        "min-h-screen flex flex-col overflow-y-auto",
 
-    // DESKTOP
-    "md:h-dvh md:flex-row md:overflow-hidden"
-  )}
->
-  {/* MAIN CONTENT */}
-<div
-  className="
+        // DESKTOP
+        "md:h-dvh md:flex-row md:overflow-hidden"
+      )}
+    >
+      {/* MAIN CONTENT */}
+      <div
+        className="
     flex-1
     space-y-4
     bg-theme
@@ -77,55 +76,53 @@ export const StreamPlayer = ({
     md:h-full
     md:overflow-y-auto hidden-scrollbar
   "
->
-    <Video
-      hostName={user.username}
-      hostIdentity={user.id}
-      showBrowserControls={isBrowserLive && isHost}
-    />
-    <Header
-      hostName={user.username}
-      hostIdentity={user.id}
-      viewerIdentity={identity}
-      isHost={isHost}
-      imageUrl={user.imgUrl}
-      isFollowing={isFollowing}
-      name={stream.name}
-    />
-    <InfoCard
-      hostIdentity={user.id}
-      viewerIdentity={identity}
-      isHost={isHost}
-      name={stream.name}
-      thumbnailUrl={stream.thumbnailUrl}
-    />
-    <AboutCard
-      hostName={user.username}
-      hostIdentity={user.id}
-      viewerIdentity={identity}
-      isHost={isHost}
-      bio={user.bio}
-      followedByCount={user._count.followedBy}
-    />
-  </div>
+      >
+        <Video
+          hostName={user.username}
+          hostIdentity={user.id}
+          showBrowserControls={isBrowserLive && isHost}
+        />
+        <Header
+          hostName={user.username}
+          hostIdentity={user.id}
+          viewerIdentity={identity}
+          isHost={isHost}
+          imageUrl={user.imgUrl}
+          isFollowing={isFollowing}
+          name={stream.name}
+        />
+        <InfoCard
+          hostIdentity={user.id}
+          viewerIdentity={identity}
+          isHost={isHost}
+          name={stream.name}
+          thumbnailUrl={stream.thumbnailUrl}
+        />
+        <AboutCard
+          hostName={user.username}
+          hostIdentity={user.id}
+          viewerIdentity={identity}
+          isHost={isHost}
+          bio={user.bio}
+          followedByCount={user._count.followedBy}
+        />
+      </div>
 
-  {/* CHAT PANEL */}
-  {!collapsed && (
-  <div className="w-full md:w-[380px] md:h-full md:overflow-y-auto border-l">
-    <Chat
-      viewerName={name}
-      hostName={user.username}
-      hostIdentity={user.id}
-      isFollowing={isFollowing}
-      isChatEnabled={stream.isChatEnabled}
-      isChatDelayed={stream.isChatDelayed}
-      isChatFollowersOnly={stream.isChatFollowersOnly}
-    />
-  </div>
-)}
-
-</div>
-
+      {/* CHAT PANEL */}
+      {!collapsed && (
+        <div className="w-full md:w-[380px] md:h-full md:overflow-y-auto border-l">
+          <Chat
+            viewerName={name}
+            hostName={user.username}
+            hostIdentity={user.id}
+            isFollowing={isFollowing}
+            isChatEnabled={stream.isChatEnabled}
+            isChatDelayed={stream.isChatDelayed}
+            isChatFollowersOnly={stream.isChatFollowersOnly}
+          />
+        </div>
+      )}
+    </div>
   );
 
   return (
@@ -150,4 +147,3 @@ export const StreamPlayer = ({
     </>
   );
 };
-

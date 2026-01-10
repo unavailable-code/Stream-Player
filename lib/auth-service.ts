@@ -3,7 +3,6 @@ import { db } from "./db";
 
 export const getSelf=async()=>{
     const self=await currentUser()
-    console.log(self)
     if(!self || !self.username){
         throw new Error("Unauthorized")
     }
@@ -46,14 +45,12 @@ export const handleUser=async()=>{
   if (!user) {
     return null;
   }
-  console.log("dskadak",user?.id);
   const res = await db.user.findUnique({
     where: {
       externalUserId: user?.id,
     },
   });
   if (res) {
-    console.log("Yes");
   } else {
     const newUser = await db.user.create({
       data: {
@@ -68,6 +65,5 @@ export const handleUser=async()=>{
         userId: newUser.id,
       },
     });
-    console.log("Noo");
   }
 }

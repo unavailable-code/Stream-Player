@@ -36,11 +36,11 @@ export const BioModal = ({ initialValue }: BioModalProps) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="link" size="sm" className="ml-auto text-white">
+        <Button variant="link" size="sm" className="ml-auto text-theme">
           Edit
         </Button>
       </DialogTrigger>
-      <DialogContent className="bg-gray-900 text-white border-0">
+      <DialogContent className="bg-theme text-theme border-0">
         <DialogHeader>
           <DialogTitle>Edit bio</DialogTitle>
         </DialogHeader>
@@ -52,7 +52,7 @@ export const BioModal = ({ initialValue }: BioModalProps) => {
               setValue(e.target.value);
             }}
             disabled={isPending}
-            className="resize-none bg-gray-900 text-white  border-white/10"
+            className="resize-none bg-theme text-theme  border-theme/10"
           />
           <div className="flex justify-between">
             <DialogClose ref={closeRef}>Cancel</DialogClose>

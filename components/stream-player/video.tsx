@@ -58,29 +58,23 @@ export const Video = memo(
           if (isMicEnabled) {
             await localParticipant.setMicrophoneEnabled(false);
             setIsMicEnabled(false);
-            console.log("Microphone muted");
           } else {
             await localParticipant.setMicrophoneEnabled(true);
             setIsMicEnabled(true);
-            console.log("Microphone unmuted");
           }
         }
       } catch (error) {
-        console.error("Error toggling microphone:", error);
         alert("Failed to toggle microphone");
       }
     }, [localParticipant, isMicEnabled]);
 
-    // Toggle Screen Share
     const handleToggleScreenShare = useCallback(async () => {
       if (!localParticipant) return;
 
       try {
         if (isScreenSharing) {
-          // Stop screen share
           await localParticipant.setScreenShareEnabled(false);
           setIsScreenSharing(false);
-          console.log("Screen sharing stopped");
         } else {
           await localParticipant.setScreenShareEnabled(true, {
             audio: true,
@@ -89,10 +83,8 @@ export const Video = memo(
             systemAudio: "include",
           });
           setIsScreenSharing(true);
-          console.log("🖥️ Screen sharing started");
         }
       } catch (error) {
-        console.error("Error toggling screen share:", error);
         alert("Failed to toggle screen share");
       }
     }, [localParticipant, isScreenSharing]);

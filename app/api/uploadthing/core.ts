@@ -11,15 +11,11 @@ export const ourFileRouter = {
   }})
   .middleware(async()=>{
     const self=await getSelf()
-    console.log("Middleware - self:", self);
     if(!self) throw new Error("Unauthorized")
     return {user:self}
   })
   .onUploadComplete(async ({ metadata, file }) => {
-    console.log("Executed")
   try {
-    console.log("Upload metadata:", metadata);
-    console.log("Uploaded file:", file);
 
     const user = metadata.user as { id: string };
     if (!user) throw new Error("User metadata missing");
@@ -29,13 +25,13 @@ export const ourFileRouter = {
 
     const updatedStream = await db.stream.update({
       where: { userId: user.id },
-      data: { thumbnailUrl: file.ufsUrl }, // ya file.ufsUrl, version check karo
+      data: { thumbnailUrl: file.ufsUrl },
     });
 
     return { fileUrl: file.ufsUrl };
   } catch (err) {
     console.error("onUploadComplete error:", err);
-    throw err; // Ye 500 show karega console me
+    throw err; 
   }
 })
 

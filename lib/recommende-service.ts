@@ -1,6 +1,5 @@
 import { db } from "./db";
 import { getSelf } from "./auth-service";
-import { error } from "console";
 
 export const getRecommends=async()=>{
     let userId;
@@ -10,7 +9,6 @@ export const getRecommends=async()=>{
     }
     catch(error){
         userId=null;
-        console.log(error)
     }
     let users=[]
     if(userId){

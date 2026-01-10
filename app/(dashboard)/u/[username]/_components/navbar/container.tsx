@@ -10,7 +10,6 @@ interface ContainerProps {
 }
 export const Container = ({ children }: ContainerProps) => {
   const route = useRouter();
-  console.log(route);
   const matches = useMediaQuery("(max-width:1024px)");
   const { collapsed, onCollapse, onExpand } = useSidebar((state) => state);
   useEffect(() => {

@@ -17,7 +17,6 @@ export const createViewerToken = async(hostIdentity: string) => {
     }
     
     const host = await getUserById(hostIdentity)
-    console.log(`Host id is ${host?.id}`)
     
     if (!host) {
         throw new Error("User not found")

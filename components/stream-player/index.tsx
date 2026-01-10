@@ -52,21 +52,13 @@ export const StreamPlayer = ({
 
   const isHost = normalizeIdentity(identity) === normalizeIdentity(user.id);
 
-  console.log("Viewer id is ", user.id);
-  console.log("Host id is ", identity);
-  console.log("Is Host :", isHost);
-
   const Layout = (
     <div
       className={cn(
-        // MOBILE
         "min-h-screen flex flex-col overflow-y-auto",
-
-        // DESKTOP
         "md:h-dvh md:flex-row md:overflow-hidden"
       )}
     >
-      {/* MAIN CONTENT */}
       <div
         className="
     flex-1
@@ -107,8 +99,6 @@ export const StreamPlayer = ({
           followedByCount={user._count.followedBy}
         />
       </div>
-
-      {/* CHAT PANEL */}
       {!collapsed && (
         <div className="w-full md:w-[380px] md:h-full md:overflow-y-auto border-l">
           <Chat

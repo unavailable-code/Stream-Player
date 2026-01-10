@@ -97,7 +97,6 @@ export const createIngress=async(ingressType: IngressInput)=>{
     revalidatePath(`/u/${self.username}/keys`)
 }
 catch(err){
-    console.log(err)
      throw new Error("Create ingress failed");
 }
 }

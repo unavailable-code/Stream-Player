@@ -30,16 +30,25 @@ export const isBlockedByUser=async(id:string)=>{
 }
 
 export const blockUser=async(id:string)=>{
+    console.log(id)
+    let cleanedId
+    if(id.startsWith("obs-")){
+        cleanedId =id.replace("obs-","")
+    }
+    else{
+        cleanedId= id
+    }
     const self=await getSelf()
-    if(self.id===id){
+    if(self.id===cleanedId){
         throw new Error("Cant block yourself")
     }
     const otherUser=await db.user.findUnique({
         where:{
-            id,
+            id:cleanedId,
         }
     })
     if(!otherUser){
+        console.log("Other user not found")
         throw new Error("User not found")
     }
     const existingBlock=await db.block.findFirst({
@@ -49,6 +58,7 @@ export const blockUser=async(id:string)=>{
         }
     })
     if(existingBlock){
+        console.log("Already blocked")
         throw new Error("Already blocked")
     }
 
@@ -61,18 +71,26 @@ export const blockUser=async(id:string)=>{
             blocked:true
         }
     })
+    console.log(`Block : ${block}`)
 
     return block
 }
 
 export const unblockUser= async(id:string)=>{
+    let cleanedId
+    if(id.startsWith("obs-")){
+        cleanedId =id.replace("obs-","")
+    }
+    else{
+        cleanedId= id
+    }
     const self =await getSelf()
-    if(self.id===id){
+    if(self.id===cleanedId){
         throw new Error("Cant unblock yourself")
     }
     const otherUser=await db.user.findUnique({
         where:{
-            id
+            id:cleanedId,
         }
     })
     if(!otherUser){

@@ -11,10 +11,10 @@ interface LiveVideoProps {
   participant: Participant;
   showBrowserControls: boolean;
   isCurrentUser?: boolean;
-  onToggleMic?: () => void; // NEW: Mic toggle callback
-  onToggleScreenShare?: () => void; // NEW: Screen share callback
-  isMicEnabled?: boolean; // NEW: Mic state
-  isScreenSharing?: boolean; // NEW: Screen share state
+  onToggleMic?: () => void;
+  onToggleScreenShare?: () => void;
+  isMicEnabled?: boolean;
+  isScreenSharing?: boolean;
 }
 
 export const LiveVideo = memo(
@@ -35,20 +35,17 @@ export const LiveVideo = memo(
     const [volume, setVolume] = useState(100);
     const [isFullScreen, setIsFullScreen] = useState(false);
 
-    // 🎯 Include ScreenShareAudio for tab audio
     const tracks = useTracks([
       Track.Source.ScreenShare,
-      Track.Source.ScreenShareAudio, // NEW: Tab audio
+      Track.Source.ScreenShareAudio,
       Track.Source.Camera,
       Track.Source.Microphone,
     ]).filter((t) => t.participant.identity === participant.identity);
 
-    // Attach/detach tracks
     useEffect(() => {
       const videoElement = videoRef.current;
       if (!videoElement) return;
 
-      // Find video track (screenshare > camera)
       const videoTrack =
         tracks.find(
           (t) => t.source === Track.Source.ScreenShare && t.publication?.track
@@ -57,54 +54,41 @@ export const LiveVideo = memo(
           (t) => t.source === Track.Source.Camera && t.publication?.track
         );
 
-      // Find microphone audio
       const micAudioTrack = tracks.find(
         (t) => t.source === Track.Source.Microphone && t.publication?.track
       );
 
-      // 🔊 NEW: Find screen share audio (tab audio)
       const screenAudioTrack = tracks.find(
         (t) =>
           t.source === Track.Source.ScreenShareAudio && t.publication?.track
       );
 
       const newAttachedTracks = new Set<string>();
-
-      // Attach video track
       if (videoTrack?.publication?.track) {
         const trackSid = videoTrack.publication.trackSid;
         if (!attachedTracksRef.current.has(trackSid)) {
-          console.log("🎥 Attaching video track:", trackSid);
           videoTrack.publication.track.attach(videoElement);
           attachedTracksRef.current.add(trackSid);
         }
         newAttachedTracks.add(trackSid);
       }
 
-      // Attach mic audio (skip if current user to avoid feedback)
       if (micAudioTrack?.publication?.track && !isCurrentUser) {
         const trackSid = micAudioTrack.publication.trackSid;
         if (!attachedTracksRef.current.has(trackSid)) {
-          console.log("🎤 Attaching mic audio track:", trackSid);
           micAudioTrack.publication.track.attach(videoElement);
           attachedTracksRef.current.add(trackSid);
         }
         newAttachedTracks.add(trackSid);
       }
-
-      // 🔊 NEW: Attach screen share audio (ALWAYS, even for current user)
-      // Tab audio should be heard by everyone including host
       if (screenAudioTrack?.publication?.track) {
         const trackSid = screenAudioTrack.publication.trackSid;
         if (!attachedTracksRef.current.has(trackSid)) {
-          console.log("🔊 Attaching screen share audio:", trackSid);
           screenAudioTrack.publication.track.attach(videoElement);
           attachedTracksRef.current.add(trackSid);
         }
         newAttachedTracks.add(trackSid);
       }
-
-      // Detach removed tracks
       const tracksToDetach = Array.from(attachedTracksRef.current).filter(
         (sid) => !newAttachedTracks.has(sid)
       );
@@ -112,14 +96,10 @@ export const LiveVideo = memo(
       tracksToDetach.forEach((sid) => {
         const track = tracks.find((t) => t.publication?.trackSid === sid);
         if (track?.publication?.track) {
-          console.log("🔇 Detaching track:", sid);
           track.publication.track.detach(videoElement);
         }
         attachedTracksRef.current.delete(sid);
       });
-
-      // Set audio state
-      // If host AND no screen audio, mute. Otherwise follow volume settings
       const shouldMute = isCurrentUser && !screenAudioTrack;
 
       if (shouldMute) {
@@ -130,16 +110,11 @@ export const LiveVideo = memo(
         videoElement.volume = volume / 100;
       }
 
-      // Try to play
       const playPromise = videoElement.play();
       if (playPromise !== undefined) {
-        playPromise.catch((err) => {
-          console.log("Autoplay prevented:", err.message);
-        });
+        playPromise.catch((err) => {});
       }
     }, [tracks, volume, isCurrentUser]);
-
-    // Volume control
     const handleVolumeChange = useCallback((newVolume: number) => {
       setVolume(newVolume);
       if (videoRef.current) {
@@ -158,8 +133,6 @@ export const LiveVideo = memo(
         return newVolume;
       });
     }, []);
-
-    // Fullscreen
     useEffect(() => {
       const handleChange = () => {
         setIsFullScreen(document.fullscreenElement === wrapperRef.current);
@@ -186,14 +159,11 @@ export const LiveVideo = memo(
           ref={videoRef}
           autoPlay
           playsInline
-          muted={false} // Let logic handle muting
+          muted={false}
           className="h-full w-full object-cover"
         />
-
-        {/* Host Controls - Top Left */}
         {isCurrentUser && (
           <div className="absolute bottom-3 left-3 flex items-center gap-2 opacity-90 group-hover:opacity-100 transition-opacity">
-            {/* Mic Toggle */}
             {onToggleMic && (
               <button
                 onClick={onToggleMic}
@@ -211,8 +181,6 @@ export const LiveVideo = memo(
                 )}
               </button>
             )}
-
-            {/* Screen Share Toggle */}
             {onToggleScreenShare && (
               <button
                 onClick={onToggleScreenShare}
@@ -234,8 +202,6 @@ export const LiveVideo = memo(
             )}
           </div>
         )}
-
-        {/* Viewer Controls - Bottom Right */}
         {!showBrowserControls && (
           <div className="absolute bottom-3 right-3 flex items-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity">
             <VolumeControl

@@ -27,7 +27,7 @@ export const CommunityItem = ({
 
   const handleBlock = () => {
     if (!participantName || isSelf || !isHost) return;
-
+    console.log("Return nhi hua");
     startTransition(() => {
       onBlock(participantIdentity)
         .then(() => toast.success(`Blocked ${participantName}`))
